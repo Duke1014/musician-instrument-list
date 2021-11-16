@@ -25,7 +25,7 @@ export default function Musicians() {
             <ul>
                 {musicianElements}
             </ul>
-            <MusicianForm setMusicians={setMusicians} />
+            <MusicianForm setMusicians={setMusicians} musicians={musicians} />
             <Link to="/" className="back-button">Back</Link>
         </div>
     )

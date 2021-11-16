@@ -16,4 +16,11 @@ class ApplicationController < Sinatra::Base
     instruments.to_json
   end
 
+  post '/musicians' do
+    musician = Musician.create(
+      "name": params[:name]
+    )
+    musician.to_json
+  end
+
 end

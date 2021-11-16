@@ -1,32 +1,40 @@
 import React, { useState, useEffect } from 'react'
 
-export default function MusicianForm({setMusicians}) {
+export default function MusicianForm({setMusicians, musicians}) {
 
     const [formName, setFormName] = useState("")
     const [error, setError] = useState("")
+    const [success, setSuccess] = useState()
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
-        fetch("http://localhost:9292/musicians")
-        .then(r => r.json()).then((data) => {
-            const musician = data.find(m => m.name === formName)
-            if (musician) {
-                setError("Name already in use, please try another one.")
-            } else {
+        setSuccess()
+        const musician = musicians.find(m => m.name === formName)
+        if (musician) {
+            setError("Name already in use, please try another one.")
+        } else {
+            setError("")
+            useEffect(() => {
                 fetch("http://localhost:9292/musicians", {
                     method: "POST",
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({username: formName})
+                    body: JSON.stringify({name: formName})
                 }).then(r => r.json()).then((data) => {
-                    setMusicians(data)
+                    console.log(data)
                 })
-            }
-        })
+            }, [])
+        }
     }
+
 
     return (
         <div>
+            {success ?
+            <>
+            <div>
+                Musician saved successfully!
+            </div>
+            </>: <>
             <form onSubmit={handleSubmit}>
                 <label>
                     Name: <input 
@@ -41,6 +49,9 @@ export default function MusicianForm({setMusicians}) {
             <div>
                 {error}
             </div>
+            </>
+            }
+            
         </div>
     )
 }
