@@ -10,7 +10,7 @@ export default function Musicians() {
             console.log(data)
             setMusicians(data)
         })
-    })
+    }, [])
 
     const musicianElements = musicians.map((m) => {
         return <li key={m.id}>
@@ -23,6 +23,9 @@ export default function Musicians() {
             <ul>
                 {musicianElements}
             </ul>
+            <button>
+                Back
+            </button>
         </div>
     )
 }

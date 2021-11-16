@@ -17,9 +17,10 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="Musicians" element={<Musicians />}>
-        </Route>
           <Route path=":id" element={<MusicianProfile />}>
+          </Route>
         </Route>
+          
       </Routes>
     </BrowserRouter>
   )
