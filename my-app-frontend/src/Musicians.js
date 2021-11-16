@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Musicians() {
 
@@ -23,9 +24,7 @@ export default function Musicians() {
             <ul>
                 {musicianElements}
             </ul>
-            <button>
-                Back
-            </button>
+            <Link to="/" className="back-button">Back</Link>
         </div>
     )
 }
