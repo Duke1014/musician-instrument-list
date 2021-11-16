@@ -11,4 +11,9 @@ class ApplicationController < Sinatra::Base
     musicians.to_json
   end
 
+  get '/instruments' do
+    instruments = Instrument.all
+    instruments.to_json
+  end
+
 end

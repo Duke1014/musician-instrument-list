@@ -8,6 +8,7 @@ import {
 import Home from './Home';
 import Musicians from './Musicians';
 import MusicianProfile from './MusicianProfile';
+import Instruments from './Instruments';
 
 import './App.css';
 
@@ -20,7 +21,9 @@ export default function App() {
           <Route path=":id" element={<MusicianProfile />}>
           </Route>
         </Route>
-          
+        <Route path="Instruments" element={<Instruments />}>
+
+        </Route>
       </Routes>
     </BrowserRouter>
   )
