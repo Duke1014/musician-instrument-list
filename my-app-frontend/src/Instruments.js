@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import InstrumentForm from './InstrumentForm'
 
 export default function Instruments() {
 
@@ -39,8 +40,7 @@ export default function Instruments() {
                 {instrumentElements}
             </ul>
             <Link to="/" className="back-button">Back</Link>
-            <> </>
-            {error}
+            <InstrumentForm error={error} setError={setError} />
         </div>
     )
 }
