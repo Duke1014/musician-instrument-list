@@ -11,6 +11,11 @@ class ApplicationController < Sinatra::Base
     musicians.to_json
   end
 
+  get '/musicians/:id' do
+    musician = musician.find(params[:id])
+    musician.to_json
+  end
+
   get '/instruments' do
     instruments = Instrument.all
     instruments.to_json
@@ -21,6 +26,11 @@ class ApplicationController < Sinatra::Base
       "name": params[:name]
     )
     musician.to_json
+  end
+
+  delete '/musicians/:id' do
+    musician = Musician.find(params[:id])
+    musician.destroy
   end
 
 end

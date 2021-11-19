@@ -11,7 +11,7 @@ export default function Home() {
                 Create a list of instruments for a musician!
             </h2>
             <li>
-                <Link to="/musicians" className="musicians-button">Musician List</Link>
+                <Link to="/musicians" className="musicians-button">Musicians List</Link>
             </li>
             <li>
                 <Link to="/instruments" className="instruments-button">Instruments List</Link>

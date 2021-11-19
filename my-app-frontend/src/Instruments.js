@@ -16,6 +16,7 @@ export default function Instruments() {
     const instrumentElements = instruments.map((i) => {
         return <li key={i.id}>
             {i.name}
+            <button>Delete</button>
         </li>
     })
 

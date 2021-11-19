@@ -1,40 +1,30 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
-export default function MusicianForm({setMusicians, musicians}) {
+export default function MusicianForm({setMusicians, musicians, error, setError}) {
 
     const [formName, setFormName] = useState("")
-    const [error, setError] = useState("")
-    const [success, setSuccess] = useState()
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        setSuccess()
         const musician = musicians.find(m => m.name === formName)
         if (musician) {
             setError("Name already in use, please try another one.")
         } else {
             setError("")
-            useEffect(() => {
-                fetch("http://localhost:9292/musicians", {
-                    method: "POST",
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({name: formName})
-                }).then(r => r.json()).then((data) => {
-                    console.log(data)
-                })
-            }, [])
+            fetch("http://localhost:9292/musicians", {
+                method: "POST",
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({name: formName})
+            }).then(r => r.json()).then((data) => {
+                console.log(data)
+                setError("Musician saved successfully!")
+            })
+            
         }
     }
 
-
     return (
         <div>
-            {success ?
-            <>
-            <div>
-                Musician saved successfully!
-            </div>
-            </>: <>
             <form onSubmit={handleSubmit}>
                 <label>
                     Name: <input 
@@ -48,10 +38,7 @@ export default function MusicianForm({setMusicians, musicians}) {
             </form>
             <div>
                 {error}
-            </div>
-            </>
-            }
-            
+            </div>         
         </div>
     )
 }
