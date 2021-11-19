@@ -21,6 +21,11 @@ class ApplicationController < Sinatra::Base
     instruments.to_json
   end
 
+  get '/instruments/:id' do
+    instrument = Instrument.find(params[:id])
+    instrument.to_json
+  end
+
   # POST
   post '/musicians' do
     musician = Musician.create(
@@ -37,6 +42,8 @@ class ApplicationController < Sinatra::Base
     )
     instrument.to_json
   end
+
+  # PATCH
 
   # DELETE
   delete '/musicians/:id' do
