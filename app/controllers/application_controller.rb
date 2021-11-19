@@ -1,7 +1,7 @@
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
-  # Add your routes here
+  # GET
   get '/' do
     "Hello World"
   end
@@ -12,8 +12,8 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/musicians/:id' do
-    musician = musician.find(params[:id])
-    musician.to_json
+    musician = Musician.find(params[:id])
+    musician.to_json(include: :instruments)
   end
 
   get '/instruments' do
@@ -21,6 +21,7 @@ class ApplicationController < Sinatra::Base
     instruments.to_json
   end
 
+  # POST
   post '/musicians' do
     musician = Musician.create(
       "name": params[:name]
@@ -28,9 +29,24 @@ class ApplicationController < Sinatra::Base
     musician.to_json
   end
 
+  post '/instruments' do
+    instrument = Instrument.create(
+      "name": params[:name],
+      "instrument_class": params[:instrument_class],
+      "brand": params[:brand]
+    )
+    instrument.to_json
+  end
+
+  # DELETE
   delete '/musicians/:id' do
     musician = Musician.find(params[:id])
     musician.destroy
+  end
+
+  delete '/instruments/:id' do
+    instrument = Instrument.find(params[:id])
+    instrument.destroy
   end
 
 end

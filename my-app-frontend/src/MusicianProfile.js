@@ -1,6 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router'
 
-export default function MusicianProfile({ id }) {
+export default function MusicianProfile() {
+
+    const { id } = useParams()
+
+    const [instruments, setInstruments] = useState([])
 
     useEffect(() => {
         fetch(`http://localhost:9292/musicians/${id}`)
@@ -9,9 +14,18 @@ export default function MusicianProfile({ id }) {
         })
     }, [])
 
+    const instrumentElements = instruments.map((i) => {
+        return <li key={i.id}>
+
+        </li>
+    })
+
     return (
         <div>
-            
+            <h2>*Musician*'s Instrument List</h2>
+            <ol>
+
+            </ol>
         </div>
     )
 }

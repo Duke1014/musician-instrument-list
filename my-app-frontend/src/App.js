@@ -13,12 +13,9 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}/>
-        <Route path="Musicians" element={<Musicians />}>
-          <Route path=":id" element={<MusicianProfile />}>
-          </Route>
-        </Route>
-        <Route path="Instruments" element={<Instruments />}>
-
+        <Route path="/musicians" element={<Musicians />} />
+        <Route path="/musicians/:id" element={<MusicianProfile />} />
+        <Route path="/instruments" element={<Instruments />}>
         </Route>
       </Routes>
     </BrowserRouter>

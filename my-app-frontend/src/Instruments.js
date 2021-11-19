@@ -13,7 +13,7 @@ export default function Instruments() {
             console.log(data)
             setInstruments(data)
         })
-    }, [])
+    }, [error])
 
     const handleDelete = (e) => {
         setError("")
@@ -31,8 +31,6 @@ export default function Instruments() {
             <button onClick={handleDelete}>Delete</button>
         </li>
     })
-
-
 
     return (
         <div>

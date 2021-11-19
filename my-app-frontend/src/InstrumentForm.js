@@ -3,8 +3,8 @@ import React, { useState } from 'react'
 export default function InstrumentForm({ error, setError }) {
 
     const [instrumentName, setInstrumentName] = useState("")
-    const [instrumentClassName, setInstrumentClassName] = useState("")
-    const [brandName, setBrandName] = useState("")
+    const [instrumentClass, setInstrumentClass] = useState("")
+    const [brand, setBrand] = useState("")
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -12,10 +12,10 @@ export default function InstrumentForm({ error, setError }) {
         fetch("http://localhost:9292/instruments", {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
-            // body: JSON.stringify({name: formName})
+            body: JSON.stringify({name: instrumentName, instrument_class: instrumentClass, brand: brand})
         }).then(r => r.json()).then((data) => {
             console.log(data)
-            setError("Musician saved successfully!")
+            setError("Instrument saved successfully!")
         })
     }
 
@@ -33,15 +33,17 @@ export default function InstrumentForm({ error, setError }) {
                     Instrument Class: <input
                         type="text"
                         name="class"
-                        value={instrumentClassName}
-                        onChange={e => setInstrumentClassName(e.target.value)}
+                        value={instrumentClass}
+                        onChange={e => setInstrumentClass(e.target.value)}
                     />
+                    <> </>
+                    [ex: String, Percussion, Brass, Woodwind]
                     <br></br>
                     Brand: <input
                         type="text"
                         name="brand"
-                        value={brandName}
-                        onChange={e => setBrandName(e.target.value)}
+                        value={brand}
+                        onChange={e => setBrand(e.target.value)}
                     />
                     <br></br>
                     <input type="submit"></input>
