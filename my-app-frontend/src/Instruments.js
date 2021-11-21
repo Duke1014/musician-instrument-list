@@ -37,8 +37,8 @@ export default function Instruments() {
             <ul>
                 {instrumentElements}
             </ul>
-            <Link to="/" className="back-button">Back</Link>
             <InstrumentForm error={error} setError={setError} />
+            <Link to="/" className="back-button">Back</Link>
         </div>
     )
 }
