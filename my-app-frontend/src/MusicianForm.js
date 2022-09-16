@@ -6,21 +6,17 @@ export default function MusicianForm({setMusicians, musicians, error, setError})
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const musician = musicians.find(m => m.name === formName)
-        if (musician) {
-            setError("Name already in use, please try another one.")
-        } else {
-            setError("")
-            fetch("http://localhost:9292/musicians", {
-                method: "POST",
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({name: formName})
-            }).then(r => r.json()).then((data) => {
-                console.log(data)
-                setError("Musician saved successfully!")
-            })
-            
-        }
+        setError("")
+        fetch("http://localhost:9292/musicians", {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({name: formName})
+        }).then(r => r.json())
+        .then((data) => {
+            let newMusicianList = [...musicians, data]
+            setMusicians(newMusicianList)
+            setError(`${data.name} saved successfully!`)
+        })
     }
 
     return (
@@ -31,7 +27,7 @@ export default function MusicianForm({setMusicians, musicians, error, setError})
                             type="text"
                             name="name"
                             value={formName}
-                        onChange={e => setFormName(e.target.value)}
+                            onChange={e => setFormName(e.target.value)}
                     />
                     <input type="submit"></input>
                 </label>

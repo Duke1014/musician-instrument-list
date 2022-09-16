@@ -9,11 +9,9 @@ export default function Musicians() {
 
     useEffect(() => {
         fetch("http://localhost:9292/musicians")
-        .then((r) => r.json()).then((data) => {
-            console.log(data)
-            setMusicians(data)
-        })
-    }, [error])
+        .then((r) => r.json())
+        .then(setMusicians)
+    }, [])
 
     const handleDelete = (e) => {
         setError("")
@@ -27,7 +25,6 @@ export default function Musicians() {
     const musicianElements = musicians.map((m) => {
         return <li key={m.id}>
             <Link to={`/musicians/${m.id}`} className={`musician-link-${m.id}`} id={m.id}>{m.name}</Link>
-            <> </>
             <button key={m.id} onClick={handleDelete} id={m.id}>Delete</button>
         </li>
     })

@@ -17,7 +17,7 @@ export default function MusicianProfile() {
             setMusicianInstruments(data.instruments)
             setMusicianName(data.name)
         })
-    }, [error])
+    }, [])
 
     const handleRemove = (e) => {
         setError("")
