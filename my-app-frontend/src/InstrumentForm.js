@@ -15,7 +15,7 @@ export default function InstrumentForm({ error, setError }) {
             body: JSON.stringify({name: instrumentName, instrument_class: instrumentClass, brand: brand})
         }).then(r => r.json()).then((data) => {
             console.log(data)
-            setError("Instrument saved successfully!")
+            setError(`${data.name} saved successfully!`)
         })
     }
 
